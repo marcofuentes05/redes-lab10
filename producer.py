@@ -19,9 +19,7 @@ class Station:
         return  directions[random.randint(0,len(directions)-1)]
 
     def getMeasurements(self):
-        return {'temperature': self.getTemperature(),
-                'humidity': self.getHumidity(),
-                'windDirection': self.getWindDirection()}
+        return '{}{}{}'.format(chr(int(self.getTemperature())), chr(self.getHumidity()), chr(self.getWindDirection()))
 
 if __name__ == '__main__':
     producer = KafkaProducer(value_serializer = lambda v: json.dumps(v).encode('utf-8') ,bootstrap_servers=DIRECTION)

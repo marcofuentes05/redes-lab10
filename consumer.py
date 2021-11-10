@@ -19,7 +19,11 @@ def animate(i, x, y, consumer):
         message = msg
         break
     x.append(dt.datetime.now().strftime('%H:%M:%S'))
-    y.append(message.value['temperature'])
+    message = message.value.decode('utf-8')
+    variable =[]
+    for i in message:
+        variable.append(i)
+    y.append(ord(variable[0]))
 
     x = x[-20:]
     y = y[-20:]
